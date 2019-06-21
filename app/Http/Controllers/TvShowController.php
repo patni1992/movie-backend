@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TvShow;
+
 
 class TvShowController extends Controller
 {
@@ -13,7 +15,7 @@ class TvShowController extends Controller
      */
     public function index()
     {
-        //
+        return TvShow::all();
     }
 
     /**
