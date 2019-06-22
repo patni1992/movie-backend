@@ -37,7 +37,7 @@ class TvShowController extends Controller
      */
     public function show($id)
     {
-        //
+        return TvShow::find($id);
     }
 
     /**
