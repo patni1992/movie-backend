@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\TvShow;
-
+use Illuminate\Http\Request;
 
 class TvShowController extends Controller
 {
@@ -32,7 +31,7 @@ class TvShowController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\TvShow  $tvShow
      * @return \Illuminate\Http\Response
      */
     public function show(TvShow $tvShow)
@@ -44,18 +43,19 @@ class TvShowController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\TvShow  $tvShow
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, TvShow $tvShow)
     {
-        //
+        $tvShow->update($request->all());
+        return $tvShow;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\TvShow  $tvShow
      * @return \Illuminate\Http\Response
      */
     public function destroy(TvShow $tvShow)
