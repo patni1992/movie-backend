@@ -19,7 +19,8 @@ class TvShowResource extends JsonResource
             'name' => $this->name,
             'summary' => $this->summary,
             'image' => $this->image,
-            'premiered' => $this->premiered
+            'premiered' => $this->premiered,
+            'rating' =>  sprintf("%0.1f",$this->ratings()->avg('rating'))
         ];
     }
 }
