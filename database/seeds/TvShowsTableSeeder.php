@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\TvShow;
+use App\Rating;
 
 class TvShowsTableSeeder extends Seeder
 {
@@ -12,6 +13,9 @@ class TvShowsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(TvShow::class, 50)->create();
+        factory(TvShow::class, 100)->create()->each(function ($tvShow) {
+            $ratings = factory(Rating::class, 6)->make();
+            $tvShow->ratings()->saveMany($ratings);
+        });
     }
 }
