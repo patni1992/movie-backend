@@ -26,7 +26,7 @@ class TvShowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return TvShow::create($request->all());
     }
 
     /**
