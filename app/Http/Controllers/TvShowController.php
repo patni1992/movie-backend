@@ -35,9 +35,9 @@ class TvShowController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TvShow $tvShow)
     {
-        return TvShow::find($id);
+        return $tvShow;
     }
 
     /**
@@ -58,8 +58,9 @@ class TvShowController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TvShow $tvShow)
     {
-        //
+        $tvShow->delete();
+        return response(null, 204);
     }
 }
