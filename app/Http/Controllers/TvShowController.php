@@ -10,12 +10,19 @@ class TvShowController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        return TvShowResource::collection(TvShow::all());
+        $query = TvShow::query();
+
+        if ($request->has('q')) {
+            $search = request()->get('q');
+            $query->where('name', 'LIKE', "%$search%");
+        }
+
+        return TvShowResource::collection($query->get());
     }
 
     /**
