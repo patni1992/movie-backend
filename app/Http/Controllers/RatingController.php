@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Rating;
 use App\TvShow;
 use Illuminate\Http\Request;
+use App\Http\Resources\RatingResource;
 
 class RatingController extends Controller
 {
@@ -12,11 +13,11 @@ class RatingController extends Controller
      * Display a listing of the resource.
      *
      * @param  \App\TvShow  $tvShow
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(TvShow $tvShow)
     {
-        return $tvShow->ratings;
+        return RatingResource::collection($tvShow->ratings);
     }
 
     /**
@@ -24,18 +25,18 @@ class RatingController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\TvShow  $tvShow
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\RatingResource
      */
     public function store(Request $request, TvShow $tvShow)
     {
-
         $rating = Rating::create(
             [
-              'tv_show_id' => $tvShow->id,
-              'rating' => $request->rating,
-            ]);
+                'tv_show_id' => $tvShow->id,
+                'rating' => $request->rating,
+            ]
+        );
 
-        return $rating;
+        return new RatingResource($rating);
     }
 
     /**
@@ -43,11 +44,11 @@ class RatingController extends Controller
      *
      * @param  \App\TvShow  $tvShow
      * @param  \App\Rating  $rating
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\RatingResource
      */
     public function show(TvShow $tvShow, Rating $rating)
     {
-        //
+        return new RatingResource($rating);
     }
 
     /**
@@ -56,11 +57,12 @@ class RatingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\TvShow  $tvShow
      * @param  \App\Rating  $rating
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\RatingResource
      */
     public function update(Request $request, TvShow $tvShow, Rating $rating)
     {
-        //
+        $rating->update($request->only(['rating']));
+        return new RatingResource($rating);
     }
 
     /**
@@ -72,6 +74,7 @@ class RatingController extends Controller
      */
     public function destroy(TvShow $tvShow, Rating $rating)
     {
-        //
+        $rating->delete();
+        return response(null, 204);
     }
 }
