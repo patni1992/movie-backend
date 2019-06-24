@@ -9,7 +9,7 @@ $factory->define(TvShow::class, function (Faker $faker) {
     return [
         'name' => $faker->sentence(),
         'summary' => $faker->text(),
-        'image' => $faker->imageUrl(1000, 1000),
+        'image' => $faker->imageUrl(400, 400),
         'premiered' => $faker->date()
     ];
 });

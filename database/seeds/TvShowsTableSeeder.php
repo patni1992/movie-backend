@@ -13,8 +13,8 @@ class TvShowsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(TvShow::class, 100)->create()->each(function ($tvShow) {
-            $ratings = factory(Rating::class, 6)->make();
+        factory(TvShow::class, 12)->create()->each(function ($tvShow) {
+            $ratings = factory(Rating::class, 4)->make();
             $tvShow->ratings()->saveMany($ratings);
         });
     }
