@@ -8,6 +8,12 @@ use App\Http\Resources\TvShowResource;
 
 class TvShowController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      * @param  \Illuminate\Http\Request  $request
@@ -18,7 +24,7 @@ class TvShowController extends Controller
         $query = TvShow::query();
 
         if ($request->has('q')) {
-            $search = request()->get('q');
+            $search = $request->q;
             $query->where('name', 'LIKE', "%$search%");
         }
 
