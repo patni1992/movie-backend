@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AuthRegisterRequest;
+use App\Http\Requests\AuthLoginRequest;
 
 class AuthController extends Controller
 {
@@ -38,7 +39,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(AuthLoginRequest $request)
     {
         $credentials = request(['email', 'password']);
 
