@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\TvShow;
 use Illuminate\Http\Request;
 use App\Http\Resources\TvShowResource;
+use App\Http\Requests\TvShowStoreRequest;
 
 class TvShowController extends Controller
 {
@@ -37,7 +38,7 @@ class TvShowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \App\Http\Resources\TvShowResource
      */
-    public function store(Request $request)
+    public function store(TvShowStoreRequest $request)
     {
         $tvShow = TvShow::create($request->all());
         return new TvShowResource($tvShow);
@@ -49,7 +50,7 @@ class TvShowController extends Controller
      * @param  \App\TvShow  $tvShow
      * @return \App\Http\Resources\TvShowResource
      */
-    public function show(TvShow $tvShow)
+    public function show(Tv $tvShow)
     {
         return new TvShowResource($tvShow);
     }
@@ -61,7 +62,7 @@ class TvShowController extends Controller
      * @param  \App\TvShow  $tvShow
      * @return \App\Http\Resources\TvShowResource
      */
-    public function update(Request $request, TvShow $tvShow)
+    public function update(TvShowStoreRequest $request, TvShow $tvShow)
     {
         $tvShow->update($request->all());
         return new TvShowResource($tvShow);
