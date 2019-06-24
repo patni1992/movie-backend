@@ -28,7 +28,6 @@ class TvShowStoreRequest extends FormRequest
             'summary' => 'required|max:50',
             'image' => 'required|url',
             'premiered' => 'date',
-            'rating' => 'integer|between:1,10'
         ];
     }
 }
