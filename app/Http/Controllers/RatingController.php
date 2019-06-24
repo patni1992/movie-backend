@@ -9,6 +9,12 @@ use App\Http\Resources\RatingResource;
 
 class RatingController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['index', 'show', 'store']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
