@@ -24,7 +24,7 @@ class TvShowRatingController extends Controller
      */
     public function index(TvShow $tvShow)
     {
-        return RatingResource::collection($tvShow->ratings);
+        return RatingResource::collection($tvShow->ratings()->paginate(16));
     }
 
     /**

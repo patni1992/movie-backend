@@ -29,7 +29,7 @@ class TvShowController extends Controller
             $query->where('name', 'LIKE', "%$search%");
         }
 
-        return TvShowResource::collection($query->get());
+        return TvShowResource::collection($query->paginate(16));
     }
 
     /**
@@ -50,7 +50,7 @@ class TvShowController extends Controller
      * @param  \App\TvShow  $tvShow
      * @return \App\Http\Resources\TvShowResource
      */
-    public function show(Tv $tvShow)
+    public function show(TvShow $tvShow)
     {
         return new TvShowResource($tvShow);
     }

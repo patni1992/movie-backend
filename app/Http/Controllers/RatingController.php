@@ -15,7 +15,7 @@ class RatingController extends Controller
      */
     public function index()
     {
-        return RatingResource::collection(Rating::all());
+        return RatingResource::collection(Rating::paginate(16));
     }
 
 
