@@ -26,5 +26,11 @@ Route::group([
 });
 
 Route::apiResource('tv-shows', 'TvShowController');
-Route::apiResource('tv-shows.ratings', 'RatingController');
+Route::apiResource('tv-shows.ratings', 'TvShowRatingController');
+Route::apiResource('ratings', 'RatingController')->except([
+    'create', 'update',
+]);
+
+// Route::get('/ratings', 'RatingController@index');
+// Route::get('/ratings/${id}', 'RatingController@show');
 
