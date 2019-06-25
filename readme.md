@@ -36,10 +36,11 @@ localhost:8080/api/tv-shows
 localhost:8080/api/ratings
 
 There are 2 resources ratings and tv-shows, full crud is avaiable using http verbs.
-To write and edit user have to be logged in
+To write and edit resources, user have to be logged in
 
 localhost:8080/api/register
-localhost:8080/apy/login
+
+localhost:8080/api/login
 
 to see all routes run 
 docker-compose exec php php artisan route:list
